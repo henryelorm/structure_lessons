@@ -8,12 +8,12 @@ a =  4.04
 
 al = crystal(symbols='Al', basis=[ (0,0,0)], spacegroup=225, cellpar=[a, a, a, 90, 90, 90], size=(2,2,2))
 
-# al.calc = EMT()
+al.calc = EMT()
 
-# dyn = QuasiNewton(al, trajectory='Al_crystal.traj')
+dyn = QuasiNewton(al, trajectory='Al_crystal.traj')
 
-# dyn.run()
+dyn.run
 
-print(al)
+print(al.get_potential_energy())
 
 view(al)
