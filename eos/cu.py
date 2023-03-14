@@ -18,9 +18,9 @@ from ase.eos import EquationOfState
 a = 3.58
 size = 2
 
-step_size = 14
-init_val  = 2.0
-final_val = 4.0
+divisions = 20
+init_val  = 0.5
+final_val = 2.05
 
 cu = crystal(symbols='Cu',  basis=[(0, 0, 0)],
                 spacegroup=221, size=(size, size, size), cellpar=[a, a, a, 90, 90, 90], pbc=True)
@@ -31,10 +31,10 @@ cu.calc = EMT()
 traj = Trajectory(filename='cu.traj', mode='w')
 cell = cu.get_cell()
 
-for i  in np.linspace(init_val, final_val, step_size):
+for i  in np.linspace(init_val, final_val, divisions):
     print(f'########## {i} ##########################')
     cu.set_cell(cell * i, scale_atoms=True)
-    energy = cu.get_potential_energy()
+    energy = cu.get_total_energy()
 
     print(energy)
     traj.write(cu)
