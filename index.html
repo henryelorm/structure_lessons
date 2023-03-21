@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+	<title>iPay :.: Checkout</title>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="" />
+
+	<!-- //custom-theme -->
+	<link href="assets/img/favicon.ico" type="image/x-icon" rel="icon" />
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/css/ipay-style.css">
+	<link rel="stylesheet" href="assets/css/angus.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+		integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+
+<body>
+	<div align="center">
+		<div class="i-pay-screen">
+			<div class="row">
+				<input id="merchant_code" type="hidden" value="OCEANSMALLMER12632"/>
+				<input id="merchant_token" type="hidden" value="tk_616a5f8e-a92b-11ed-a05c-f23c9170642f"/>
+				<input id="merchant_mode" type="hidden" value="TEST"/>
+				<input id="merchant_agent" type="hidden" value="NA"/>
+				<input id="amount_to_pay" type="hidden" value="2.02"/>
+				<input id="fee_to_pay" type="hidden" value="0.02"/>
+				<input id="amount_original" type="hidden" value="2"/>
+				<input id="invoice_id" type="hidden" value="00123"/>
+				<input id="invoice_currency" type="hidden" value=""/>
+				<input id="invoice_ref" type="hidden" value=""/>
+				<input id="invoice_type" type="hidden" value=""/>
+				<input id="invoice_source" type="hidden" value=""/>
+				<input id="invoice_pay_type" type="hidden" value="NORMAL"/>
+				<input id="description" type="hidden" value="test "/>
+				<input id="extraName" type="hidden" value="Elorm"/>
+				<input id="extraPhone" type="hidden" value="0549289655"/>
+				<input id="extraEmail" type="hidden" value="henryquarshie.hq@gmail.com"/>
+				<input id="extraOutlet" type="hidden" value=""/>
+				<input id="url_success" type="hidden" value=""/>
+				<input id="url_cancelled" type="hidden" value="https://oceans-mall-seafood.business.site/posts/2277119735367772842?hl=en-GB"/>
+				<input id="url_callback" type="hidden" value=""/>
+				<input id="is_redirect" type="hidden" value=""/>
+
+				<div class="top">
+					<div align="center" class="row payment-details">
+						<div class="top-table">
+							<div class="col-sm">
+								<img class="merchant-logo" src="https://payments.ipaygh.com/app/webroot/img/logo/LOGO-MER12632.jpeg">
+								<div class="top-text text-center">
+									<p class="merchant-name">OceansMall</p>
+								</div>
+							</div>
+							<div class="col-sm ellipsis">
+								<div class="top-text">
+									<span class="display-invoice-text">
+										00123	
+									</span>
+									<br/>
+									<span class="display-description-text hyphenate">
+										test 	
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="top-table">
+							<div class="col-sm" style="padding-right: 0 !important;">
+								<div class="top-amount">
+									<span class="display-amount-text">
+										GHS 2.02									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tabs"></div>
+				<div class="bottom">
+					<div id="test-numbers" class="alert alert-info"
+						style="font-size: 12px; text-align: initial; display:none;">
+						<b>Account in TEST Mode</b><br>
+						Test payment transactions using <b>ONLY</b> our test numbers <b>0240000000</b> and <b>0260000000</b>
+					</div>
+					<div class="p-b-20">
+						<div id="pay-option-section">
+							<label>Payment Options</label>
+							<select id="payOptions"  name="payOptions" class="form-controls">
+								<option value="" data-class="option" selected>Select a payment option</option>
+																	<option value="mtn" data-class="mtn">MTN Mobile Money</option>
+									<option value="vodafone" data-class="vodafone">Vodafone Cash</option>
+									<option value="tigo" data-class="airteltigo">AirtelTigo Money</option>
+															</select>
+							<span class="err-option" style="color:red; display:none;"></span>
+						</div>
+
+						<div id="mobile-pay-section" style="display:none;">
+							<div id="mobile" class="state-controls">
+								<label>Mobile Number</label>
+								<input id="mobile_number" type="tel" placeholder="Mobile Money Number" onblur="validatePhoneNumber(this);" autocomplete="off" maxlength="10" minlength="10">
+								<input type="hidden" id="voucher_no" value="000000">
+								<span class="err-number" style="font-size: 10px; color:red; display:none;"></span>
+							</div>
+						</div>
+
+						<div id="qr-pay-section" style="display:none;">
+							<div class="checkout-form text-align-center">
+								<h5 id="card-pay-title">SECURE QR PAYMENT</h5>
+								<span class="fa fa-lock"></span>
+								<hr />
+							</div>
+							<div id="box" class="alert alert-info" style="font-size: 12px">
+								Once you click on the Pay button, we will launch a secure QR Code for you to scan and
+								pay with your <b>bank's mobile-app that supports GhQR, mVisa and Masterpass</b>.
+							</div>
+						</div>
+
+						<div id="card-pay-section" style="display:none;">
+							<div class="checkout-form text-align-center">
+								<h5><span class="fa fa-lock"></span>SECURE TRANSACTION</h5>
+								<hr />
+							</div>
+							<form>
+								<!-- <div id="cyb_iframe_div" style="display: none;">
+							        <iframe id="cyb_iframe" name="cyb_iframe" style="height:100vh;width:100%" height="100%" width="100%"></iframe>
+							    </div> -->
+								<div id="card-pay-details" style="display:none;">
+									<div class="state-controls">
+										<label>Card Type</label>
+										<select id="gw_card_type" class="form-controls">
+											<option value="" selected>Select card type</option>
+											<option value="001">Visa</option>
+											<option value="002">Mastercard</option>
+										</select>
+										<span class="err-card-type" style="font-size: 10px; color:red; display:none;"></span>
+									</div>
+
+									<div class="card-wrapper" style="display:none;"></div>
+									<div class="row"
+										style="margin-right: -15px !important;margin-left: -15px !important;">
+										<div class="col-md-6 col-sm-6">
+											<div class="state-controls">
+												<label>First Name</label>
+												<input id="gw_card_first_name" name="gw_card_first_name" type="text" placeholder="" value="Elorm" autocomplete="off">
+												<span class="err-card-name-first" style="font-size: 10px; color:red; display:none;"></span>
+											</div>
+										</div>
+										<div class="col-md-6 col-sm-6">
+											<div class="state-controls">
+												<label>Last Name</label>
+												<input id="gw_card_last_name" name="gw_card_last_name" type="text" placeholder="" value="Elorm" autocomplete="off">
+												<span class="err-card-name-last" style="font-size: 10px; color:red; display:none;"></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="state-controls">
+										<label>Card Number</label>
+										<input id="gw_card_number_ds" type="text" placeholder="" autocomplete="off">
+										<input id="gw_card_number" type="hidden" autocomplete="off">
+										<span class="err-card-number" style="font-size: 10px; color:red; display:none;"></span>
+									</div>
+									<div class="row"
+										style="margin-right: -15px !important;margin-left: -15px !important;">
+										<div class="col-md-4 col-sm-4">
+											<div class="state-controls">
+												<label>Expiry Date</label>
+												<select id="gw_card_expire_month" class="form-controls">
+													<option value="" selected>MM</option>
+													<option value="01">01</option>
+													<option value="02">02</option>
+													<option value="03">03</option>
+													<option value="04">04</option>
+													<option value="05">05</option>
+													<option value="06">06</option>
+													<option value="07">07</option>
+													<option value="08">08</option>
+													<option value="09">09</option>
+													<option value="10">10</option>
+													<option value="11">11</option>
+													<option value="12">12</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-4 col-sm-4">
+											<div class="state-controls">
+												<label></label>
+												<select id="gw_card_expire_year" class="form-controls">
+													<option value="" selected>YYYY</option>
+																										</select>
+											</div>
+										</div>
+										<div class="col-md-4 col-sm-4">
+											<div class="state-controls">
+												<label>CVV</label>
+												<input id="gw_card_cvn" type="text" placeholder="" autocomplete="off" maxlength="3" minlength="3">
+											</div>
+											</div>
+											<div class="col-md-12 col-sm-12">
+												<div class="err-card alert alert-danger"
+													style="font-size: 12px; color:red; display:none;"></div>
+											</div>
+										</div>
+									</div>
+							</form>
+						</div>
+
+						<div id="mobile-confirm-section" style="display: none">
+							<b>Payment Instruction
+								<hr/>
+							</b>
+							<div id="inst-msg" class="alert alert-info" style="font-size: 12px"></div>
+						</div>
+
+						<div id="qr-confirm-section" style="display: none">
+							<img src="assets/img/ipay-mvisamasterpass-qr.png">
+							<div class="checkout-form text-align-center">
+								<h6><b>SCAN to PAY</b></h6>
+								<span>with your bank's mobile-app that supports <br><b>GhQR</b>, <b>mVisa</b> and <b>Masterpass</b></span>
+								<br>
+								<div id="scan-qr-code"></div>
+								<hr>
+							</div>
+							<div id="inst-msg" class="alert alert-info" style="font-size: 12px">Click on the
+								<b>Confirm</b> button, once you're done.</div>
+						</div>
+
+						<div id="cfm-msg" class="alert alert-info" style="font-size: 12px; display:none;"></div>
+
+						<div id="pay-status-section" style="display: none">
+							<b>Payment Status
+								<hr/>
+							</b>
+							<div id="msg" class="alert alert-info" style="font-size: 12px"></div>
+						</div>
+
+						<div id="pay-pending-section" style="display: none">
+							<b>Payment Instruction
+								<hr/>
+							</b>
+							<div id="pending-msg" class="alert alert-info"></div>
+						</div>
+
+						<div id="error-section" style="display: none">
+							<b>Payment Error
+								<hr/>
+							</b>
+							<div id="error" class="alert alert-danger" style="font-size: 12px"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<button id="proceed" type="button" class="btn-pay">Pay <i class="fa fa-arrow-right"></i></button>
+							<button id="confirm" type="button" class="btn-pay">Confirm <i class="fa fa-wallet"></i></button>
+							<button id="continue" type="button" class="btn-pay">Continue <i class="fa fa-wallet"></i></button>
+						</div>
+						<div class="col-md-6">
+							<button id="cancel" type="button" class="btn-cancel" style="float: right;">Cancel <i class="fa fa-times"></i></button>
+						</div>
+					</div>
+				</div>
+				<div id="cyber_form" style="display:none;"></div>
+				<form id="addInputForm" role="form"></form>
+			</div>
+		</div>
+		<div class="i-copyright">
+			<p class="i-powered-by"><a href="https://www.ipaygh.com/"
+					target="_blank"><i class="fa fa-lock"></i>&nbsp;SECURED
+					BY&nbsp;&nbsp;<img src="assets/img/iPay-logo-mini-3.PNG" width="50px" height="50px"/></a></p>
+		</div>
+	</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="assets/js/jquery-ui-1.12.1.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.blockUI.js"></script>
+<script src="assets/js/card.min.js"></script>
+<script src="assets/js/creditcard.min.js"></script>
+<!-- <script src="https://gw.ipaygh.com/static/cybercards/dist/js/gw.js"></script> -->
+<script src="assets/js/app.js"></script>
+<script>
+	function validatePhoneNumber(phoneField){
+		var rpattern = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+		//
+		if(phoneField.value != ''){
+			if (rpattern.test(phoneField.value) == false){
+				$('.err-number').html("Please enter a valid mobile money number").fadeIn(500);
+				$(phoneField).val('').focus();
+				return false;
+			}
+		}
+		return true;
+	}
+</script>
+
+</html>

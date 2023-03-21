@@ -42,7 +42,7 @@ for i  in np.linspace(init_val, final_val, divisions):
 
 
 ## ploting the final the EOS
-configs = read('cu.traj@0:5') 
+configs = read('cu.traj@0:10') 
 
 volumes = [cu.get_volume() for cu in configs]
 energies = [cu.get_potential_energy() for cu in configs]
