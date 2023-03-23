@@ -1,9 +1,6 @@
 from ase.visualize import view
-from ase.atoms import Atom
-from ase.io.vasp import read_vasp
 from ase.build import fcc100, add_adsorbate
-from ase.calculators.emt import EMT
-from ase.optimize import QuasiNewton
+
 
 
 a = 3.58
