@@ -21,20 +21,19 @@ for i in slab_al:
 
 slab_al.set_constraint(FixAtoms(mask=masks))
 
-
 slab_al.calc = EMT()
 
 #initial configuration
 opt = QuasiNewton(atoms=slab_al, trajectory='initial.traj')
-opt.run(fmax=0.05)
+opt.run(fmax=0.002)
 
-
+view(slab_al)
 # Final configuration:
 slab_al[-1].x += slab_al.get_cell()[0, 0] / 2
 # slab_al[-1].y += slab_al.get_cell()[1, 1] / 2
 
 opt = QuasiNewton(atoms=slab_al, trajectory='final.traj')
-opt.run(fmax=0.05)
+opt.run(fmax=0.002)
 
 
 view(slab_al)
