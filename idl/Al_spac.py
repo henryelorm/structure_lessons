@@ -7,8 +7,7 @@ from ase.io.lammpsdata import write_lammps_data
 a = 4.04
 
 
-al = crystal(symbols='Al', basis=[(0,0,0)], spacegroup=225, 
-             cellpar=[a, a, a, 90, 90, 90], size=(1, 1, 1))
+al = crystal(symbols='Al', basis=[(0,0,0)], spacegroup=225, cellpar=[a, a, a, 90, 90, 90], size=(1, 1, 1))
 
 
 view(al)
